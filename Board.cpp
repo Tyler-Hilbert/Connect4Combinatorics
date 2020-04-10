@@ -42,10 +42,6 @@ bool Board::place(int col, PositionPiece& turn) {
 
 // Returns who won or EMPTY if nobody won
 PositionPiece Board::winner() {
-  // FIXME - check and make sure this hits all cases
-
-  // FIXME - remove comments
-
   // Check verticals
   for (int col = 0; col < MAX_COL; col++) {
     // TODO - would it be easier to check this with a rotating array or other data structure?
