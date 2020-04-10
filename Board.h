@@ -3,10 +3,10 @@
 
 #include <string>
 
-#define MAX_COL 6
-#define MAX_ROW 7
+#define MAX_COL 7
+#define MAX_ROW 6
 
-enum PositionPiece {EMPTY=-1, PLAYER1=0, PLAYER2=1}; // TODO - does it make sense to use this for turn and winner?
+enum PositionPiece {EMPTY=-1, PLAYER1=0, PLAYER2=1};
 
 /*
   Class that has all the Connect 4 board data and functions
@@ -19,7 +19,7 @@ public:
   PositionPiece winner();
 
 private:
-  PositionPiece m_board[MAX_ROW][MAX_COL]; // TODO - Would it make more sense to save this in a different data structure?
+  PositionPiece m_board[MAX_ROW][MAX_COL];
   bool checkPiecesForWinner(PositionPiece a, PositionPiece b, PositionPiece c, PositionPiece d);
 };
 

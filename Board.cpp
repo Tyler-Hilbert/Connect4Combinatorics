@@ -49,11 +49,10 @@ PositionPiece Board::winner() {
   // Check verticals
   for (int col = 0; col < MAX_COL; col++) {
     // TODO - would it be easier to check this with a rotating array or other data structure?
-    for (int row = 3; row < MAX_ROW; row++) { // FIXME - verify all indices are hit
-      // if (m_board[row][col] == m_board[row-1][col] == m_board[row-2][col] == m_board[row-3][col] != EMPTY) {
+    for (int row = 3; row < MAX_ROW; row++) {
       if (checkPiecesForWinner(m_board[row][col], m_board[row-1][col], m_board[row-2][col], m_board[row-3][col])) {
         printf ("v\n");
-	return m_board[row][col];
+	      return m_board[row][col];
       }
     }
   }
@@ -63,27 +62,25 @@ PositionPiece Board::winner() {
     for (int col = 3; col < MAX_COL; col++) {
        if (checkPiecesForWinner(m_board[row][col], m_board[row][col-1], m_board[row][col-2], m_board[row][col-3])) {
         printf ("h\n");
-	return m_board[row][col];
+	      return m_board[row][col];
       }
     }
   }
 
   // Check diagonals
-  // FIXME - verify this hits all cases
   for (int row = 3; row < MAX_ROW; row++) { // Up-left diagonol
     for (int col = 3; col < MAX_COL; col++) {
       if (checkPiecesForWinner(m_board[row][col], m_board[row-1][col-1], m_board[row-2][col-2], m_board[row-3][col-3])) {
         printf ("ul\n");
-	return m_board[row][col];
+	      return m_board[row][col];
       }     
     }
   }
   for (int row = 0; row < MAX_ROW-3; row++) { // Up-right diagonol
-    // FIXME - make sure MAX_ROW-3 is correct
     for (int col = 3; col < MAX_COL; col++) {
       if (checkPiecesForWinner(m_board[row][col], m_board[row+1][col-1], m_board[row+2][col-2], m_board[row+3][col-3])) {
         printf ("ur\n");
-	return m_board[row][col];
+	      return m_board[row][col];
       }     
     }
   } 
