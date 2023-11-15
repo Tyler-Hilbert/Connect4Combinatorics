@@ -1,4 +1,4 @@
-#include "Board.h" // TODO - should I include h files or cpp?
+#include "Board.h"
 
 #include <iostream>
 #include <string>
@@ -6,10 +6,21 @@
 
 #include <unistd.h> // Only needed when debugging for sleep mode``
 
-unsigned long long int GAME_COUNTER = 0; // FIXME - will this be large enough or will it overflow?
+unsigned long long int GAME_COUNTER = 0;
 
+void incrementGameCounter() {
+  if (GAME_COUNTER < ULLONG_MAX) {
+    GAME_COUNTER += 1;
+    printf("Game counter %llu\n", GAME_COUNTER);
+    sleep(2);
+  } else {
+    printf("WARNING: Reached max game_counter size");
+    printf ("Press any key to continue");
+    system("pause"); // Windows
+    system("read"); // Mac / Linux
+  }
+}
 
-// FIXME - should these be passed by reference?
 void DFS(int col, PositionPiece turn, std::vector<int> plays, Board board) {
   // Place current piece
   if (board.place(col, turn)) {
@@ -27,15 +38,11 @@ void DFS(int col, PositionPiece turn, std::vector<int> plays, Board board) {
     // Check for complete game
     if (plays.size() == (MAX_ROW*MAX_COL)) { // Check if board if full
       printf("Board Full\n");
-      GAME_COUNTER += 1;
-      printf("Game counter %llu\n", GAME_COUNTER);
-      sleep(2);
+      incrementGameCounter();
       return;
     }
     if (board.winner() != EMPTY) { // Check if someone won
-      GAME_COUNTER += 1;
-      printf("Game counter %llu\n", GAME_COUNTER);
-      sleep(2);
+      incrementGameCounter();
       return;
     }
 
